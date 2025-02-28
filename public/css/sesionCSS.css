@@ -1,0 +1,271 @@
+/*GENERAL*/
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    background-color: #f2dde4;
+    text-align: justify;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-family: "Oooh Baby", cursive;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 400%;
+    color: #deffbf;
+    text-shadow: 6px 6px #494949;
+    text-shadow: 0px 0px 30px #494949, 0px 0px 15px #494949, 3px 3px #494949;
+}
+h2,h3{
+    font-family: "Barlow", sans-serif;
+    font-weight: bold;
+    color: #494949;
+}
+h2{
+    font-size: xx-large;
+}
+p{
+    font-family: "Barlow", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 25px;
+}
+a{
+    text-decoration: none;
+}
+/* HEADER */
+header{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #346303FF;
+}
+#Logo{
+    position: absolute;
+    left: 1%;
+    height: 25%;
+    width: 10%;
+}
+/*TITULO*/
+header > h1{
+    text-shadow: #dedbdd;
+
+}
+button > *{
+    font-family: "Barlow", sans-serif;
+    text-decoration: none;
+    font-style: normal;
+}
+/*BOTONES*/
+button{
+    background-image: linear-gradient(
+        150deg,
+        #346303FF,
+        #deffbf
+    );
+    border-radius: 8px;
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 4px;
+    cursor: pointer;
+    transition: 0.3S;
+}
+button span{
+    background-color: #f2dde4;
+    padding: 16px 24px;
+    border-radius: 6px;
+    transition: 0.3S;
+}
+button:hover{
+    color: white;
+    transform: scale(1.1);
+    border-color: #494949;
+}
+button:hover span{
+    background: none;
+}
+button:active{
+    transform: scale(0.9);
+}
+button{
+    height: 80%;
+}
+/*FUENTES*/
+input::placeholder{
+    color: black;
+    opacity: 50%;
+    font-family: "Barlow", sans-serif;
+}
+p{
+    font-family: "Barlow", sans-serif;
+}
+/*CUERPO*/
+aside{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+    padding-bottom: 25px;
+    background-color: #fbf3f3;
+}
+.inicioSesion{
+    width: 40%;
+    margin-top: 5%;
+    background-color: #deffbf;
+    border-radius: 10px;
+}
+
+.inicioSesion h2{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 3px solid #346303FF;
+}
+
+.inicioSesion form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .usuario{
+    position: relative;
+    left: 10%;
+    width: 75%;
+    border-bottom: 2px solid #346303FF;
+    margin: 30px 0px;
+}
+
+.usuario input{
+    width: 100%;
+    padding: 0px 5px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.usuario label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #494949;
+    transform: translateY(-150%);
+    font-size: 25px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.usuario span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #346303FF;
+    transform: .5s;
+}
+
+.usuario input:focus ~ label,
+.usuario input:focus ~ label{
+    top: 15px;
+    color: #346303;
+}
+
+.usuario input:focus ~ span::before,
+.usuario input:focus ~ span::before{
+    width: 100%;
+}
+
+form .password{
+    position: relative;
+    left: 10%;
+    width: 75%;
+    border-bottom:2px solid #346303FF;
+    margin: 30px 0;
+}
+
+.password input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.password label{
+    position: absolute ;
+    top: 50%;
+    left: 5px;
+    color: #494949;
+    transform: translateY(-150%);
+    font-size: 25px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.recordar{
+    margin: -5px 0 20px 5px;
+    color: #494949;
+    cursor: pointer;
+}
+
+.recordar:hover{
+    text-decoration: underline;
+}
+
+input[type="sumbit"]{
+    width: 100%;
+    height: 50px;
+    border: 2px solid;
+    background-color: #346303FF;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #494949;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="sumbit"]:hover{
+    border-color: #494949;
+    transition: .5s;
+}
+
+.registrar{
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+}
+
+.registrar a{
+    color: #494949;
+    text-decoration: none;
+}
+
+.registrar a:hover{
+    text-decoration: underline;
+}
+.botones{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: #494949;
+}
+.recordar{
+    margin-left: 30%;
+}
