@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\formularioController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PisoController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +12,7 @@ Route::get('/', function () {
 //INICIO SESION
 Route::get("login", function () {
     return view('login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 //PISOS
 Route::get("calleConstitucion1", function () {
@@ -29,5 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::view("favoritos","index")->name('favoritos');
 require __DIR__.'/auth.php';
+
+Route::resource("observaciones", ObservacionesController::class);
+Route::post('/contacto', [ObservacionesController::class, 'store'])->name('For');
+
+
+//Pisos
+Route::get("pisos/indexPisos", function () {
+    return view('pisos/indexPisos');
+})->name('indexPisos');

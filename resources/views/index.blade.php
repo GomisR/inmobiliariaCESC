@@ -17,45 +17,43 @@
     <header id="AnclaInicio">
         <img src="{{asset('images/logo.jpeg')}}" id="Logo">
         <h1>Inmobiliaria CES</h1>
-        <a id="BotonInicio" href="{{route('login')}}">
-            <button id="AvatarBoton">
-                <img id="Avatar" src="{{ asset('images/AvatarFondo.png') }}" width="50"/>
-                @guest
-                <p>Iniciar Sesion</p>
-                @endguest
-                @auth
-                    <p>{{ auth()->user()->name }}</p>
-                    <form action="{{route("logout")}}" method="POST">
-                @csrf
-                    <input class="btn  btn-glass" type="submit" value="Logout">
+        @guest
+            <a id="BotonInicio" href="{{ route('login') }}">
+                <button id="AvatarBoton">
+                    <img id="Avatar" src="{{ asset('images/AvatarFondo.png') }}" width="50"/>
+                    <p>Iniciar Sesión</p>
+                </button>
+            </a>
+        @endguest
+        @auth
+            <div id="AvatarBoton" style="visibility: hidden">
+                <form style="visibility: visible" action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button id="AvatarBoton" style="width: 100%; height: 100%" type="submit">{{ Auth::user()->name }} - Cerrar Sesión</button>
                 </form>
-                Logout
-
-               @endauth
-            </button>
-        </a>
-        @auth <!-- PISOS FAVORITOS SOLO SI ESTÁ LOGEADO -->
-            <a class="h-full btn btn-warning" href="{{route('favoritos')}}">Favoritos</a>
+            </div>
         @endauth
     </header>
     <br>
     <div id="cuerpoFichas">
         <!-- Todas las "fichas" de las casas -->
         <div class="ficha">
-            <a class="centrado" href="{{route('calleConstitucion1')}}">
+            <a class="centrado" @auth href="{{route('indexPisos')}}" @endauth>
                 <img class="imagenFicha" src="{{asset('images/piso1/CalleConstitucion1.png')}}"/>
                 <div class="textoficha">
                     <h3>180.000€</h3>
                     <p>Calle Constitucion Cuarte de Huerva, Zaragoza</p>
+                    <p>Piso espacioso con 4 habitaciones y 2 baños. Siutado en el centro del pueblo</p>
                 </div>
             </a>
         </div>
         <div class="ficha">
-            <a class="centrado" href="./piso1.html">
+            <a class="centrado" href="{{route('calleConstitucion1')}}">
                 <img class="imagenFicha" src="{{asset('images/piso1/CalleConstitucion1.png')}}" usemap="#piso1map"/>
                 <div class="textoficha">
                     <h3>225.000€</h3>
                     <p>Calle Cuarta Zaragoza</p>
+                    <p>Chalet grande con 4 habitaciones y 2 baños. Situado a las afueras del pueblo.</p>
                 </div>
             </a>
         </div>
@@ -76,7 +74,7 @@
     <div id="Contactanos">
         <fieldset>
             <h3 id="TituloFormulario">Formulario de Contacto</h3>
-            <form method="POST" action="{{ route('index') }}">
+            <form method="POST" action="{{ route('For') }}">
                 @csrf
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required value="{{ old('nombre') }}">
@@ -99,6 +97,17 @@
                 </div>
             </form>
         </fieldset>
+        <!-- Validamos y mostramos el error desde el controller -->
+        @if ($errors->any())
+            <div style="color: red;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @if(session('success'))
             <p style="color: green;">{{ session('success') }}</p>
         @endif

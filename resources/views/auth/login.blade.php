@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <link rel="shortcut icon" href="{{asset('images/logo.jpeg')}}" />
+    <link rel="shortcut icon" href="{{asset('../../public/images/logo.jpeg')}}" />
     <!-- CSS -->
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -43,6 +43,11 @@
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
+
         </div>
     </form>
+    <x-primary-button class="ms-3">
+        redirect()->route('register')
+    </x-primary-button>
+
 </x-guest-layout>
