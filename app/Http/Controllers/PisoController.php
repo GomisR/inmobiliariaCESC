@@ -9,8 +9,8 @@ class PisoController extends Controller
 {
     public function index()
     {
-        $pisos = Piso::all();
-        return view('pisos.indexPisos', compact('pisos'));
+        $pisos = Piso::all(); // Obtener todos los pisos de la base de datos
+        return view('pisos.indexPisos', compact('pisos')); // Pasar la variable a la vista
     }
 
     public function create()

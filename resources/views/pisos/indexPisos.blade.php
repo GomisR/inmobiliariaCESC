@@ -2,18 +2,38 @@
 
 @section('content')
     <h1>Listado de Pisos</h1>
-    <a href="{{ route('pisos.create') }}">Crear Nuevo Piso</a>
-    <ul>
+    <a href="{{ route('pisos.create') }}" class="btn btn-primary mb-4">Crear Nuevo Piso</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Calle</th>
+            <th>Precio (€)</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach($pisos as $piso)
-            <li>{{ $piso->calle }} - {{ $piso->precio }}€
-                <a href="{{ route('pisos.show', $piso) }}">Ver</a>
-                <a href="{{ route('pisos.edit', $piso) }}">Editar</a>
-                <form action="{{ route('pisos.destroy', $piso) }}" method="POST" style="display:inline;">
-                    @csrf @method('DELETE')
-                    <button type="submit">Eliminar</button>
-                </form>
-            </li>
+            <tr>
+                <td>{{ $piso->calle }}</td>
+                <td>{{ $piso->precio }}€</td>
+                <td>{{ $piso->descripcion }}</td>
+                <td>
+                    <!-- Editar -->
+                    <a href="{{ route('pisos.edit', $piso) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                    <!-- Eliminar -->
+                    <form action="{{ route('pisos.destroy', $piso) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este piso?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
         @endforeach
-    </ul>
-    <a href="{{ route('index') }}">Volver</a>
+        </tbody>
+    </table>
+
+    <a href="{{ url('/') }}" class="btn btn-secondary">Volver</a>
 @endsection

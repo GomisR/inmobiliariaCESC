@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PisoController;
-
 use Illuminate\Support\Facades\Route;
 
 //INDEX
@@ -35,6 +34,6 @@ Route::post('/contacto', [ObservacionesController::class, 'store'])->name('For')
 
 
 //Pisos
-Route::get("pisos/indexPisos", function () {
-    return view('pisos/indexPisos');
-})->name('indexPisos');
+Route::get('pisos', [PisoController::class, 'index'])->name('pisos.index');
+
+Route::resource("pisos", PisoController::class);

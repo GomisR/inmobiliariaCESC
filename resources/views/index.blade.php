@@ -38,7 +38,7 @@
     <div id="cuerpoFichas">
         <!-- Todas las "fichas" de las casas -->
         <div class="ficha">
-            <a class="centrado" @auth href="{{route('indexPisos')}}" @endauth>
+            <a class="centrado" @auth href="{{route('pisos.index')}}" @endauth>
                 <img class="imagenFicha" src="{{asset('images/piso1/CalleConstitucion1.png')}}"/>
                 <div class="textoficha">
                     <h3>180.000€</h3>
