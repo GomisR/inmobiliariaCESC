@@ -31,8 +31,8 @@
             <br><br>
             <div class="botones">
                 <button type="submit" name="iniciar">Iniciar</button>
-                <a href="./Registrar.php">
-                    <button type="button">Registrar</button>
+                <a href="{{ route('registrarse') }}">
+                    <button id="Registrarse" type="button">Registrar</button>
                 </a>
             </div>
         </form>

@@ -13,6 +13,11 @@ Route::get("login", function () {
     return view('login');
 })->name('login')->middleware('guest');
 
+//REGISTRO
+Route::get("register", function () {
+    return view('register');
+})->name('register');
+
 //PISOS
 Route::get("calleConstitucion1", function () {
     return view('calleConstitucion1');

@@ -35,19 +35,19 @@
         @endauth
     </header>
     <br>
-    <div id="cuerpoFichas">
-        <!-- Todas las "fichas" de las casas -->
-        <div class="ficha">
-            <a class="centrado" @auth href="{{route('pisos.index')}}" @endauth>
-                <img class="imagenFicha" src="{{asset('images/piso1/CalleConstitucion1.png')}}"/>
-                <div class="textoficha">
-                    <h3>180.000€</h3>
-                    <p>Calle Constitucion Cuarte de Huerva, Zaragoza</p>
-                    <p>Piso espacioso con 4 habitaciones y 2 baños. Siutado en el centro del pueblo</p>
-                </div>
+    @auth
+        <div id="cuerpoFichas">
+            <a href="{{ route('pisos.index') }}" style="text-decoration: none; margin-bottom: 20px;"
+               onmouseover="this.style.boxShadow='0 0.2rem 0.6rem #346303FF';"
+               onmouseout="this.style.boxShadow='none';"
+            >
+                <button class="btn btn-primary">
+                    <p
+                        style="color: #deffbf; display: flex; align-self: center; margin-top: 15px; transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; cursor: pointer;"
+                    >Ver todos los pisos</p></button>
             </a>
         </div>
-    </div>
+    @endauth
     <div id="SobreNosotras">
         <p>Somos una empresa pequeña con dos trabajadores Celia Cies y Sandra Martinez.
             LLevamos mas de 5 años en este sector trabajando en diferentes inmobiliarias.

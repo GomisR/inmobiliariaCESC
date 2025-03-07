@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <link rel="shortcut icon" href="{{asset('../../public/images/logo.jpeg')}}" />
+    <link rel="shortcut icon" href="{{asset('images/logo.jpeg')}}" />
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/stilosCSS.css') }}">
 
@@ -45,11 +45,11 @@
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
-
         </div>
     </form>
-    <x-primary-button class="ms-3">
-        redirect()->route('register')
-    </x-primary-button>
-
+    <a href="{{ route('register') }}" style="display: flex; align-self: center; justify-self: center; width: 50%; margin-bottom: 20px; background-color: #deffbf">
+            <x-primary-button class="ms-4" style="width: 100%; margin-left: 10px; margin-right: 10px; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; background-color: #346303FF; color: #deffbf;">
+                {{ __('Register') }}
+            </x-primary-button>
+    </a>
 </x-guest-layout>
