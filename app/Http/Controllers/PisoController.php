@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ComunidadAutonoma;
 use App\Models\Piso;
 use Illuminate\Http\Request;
 
@@ -9,24 +10,31 @@ class PisoController extends Controller
 {
     public function index()
     {
-        $pisos = Piso::all(); // Obtener todos los pisos de la base de datos
-        return view('pisos.indexPisos', compact('pisos')); // Pasar la variable a la vista
+        $pisos = Piso::with('comunidadAutonoma')->get();
+        return view('pisos.indexPisos', compact('pisos'));
     }
 
     public function create()
     {
-        return view('pisos.create');
+        $comunidades = ComunidadAutonoma::all();
+        return view('pisos.create', compact('comunidades'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'calle' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:0',
-            'descripcion' => 'nullable|string',
+        $validatedData = $request->validate([
+            'calle' => 'required',
+            'precio' => 'required|numeric',
+            'descripcion' => 'nullable',
+            'comunidad_autonoma_id' => 'required|exists:comunidades_autonomas,id',  // Asegúrate de que la comunidad seleccionada exista
         ]);
 
-        Piso::create($request->all());
+        Piso::create([
+            'calle' => $request->calle,
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion,
+            'comunidad_autonoma_id' => $request->comunidad_autonoma_id,
+        ]);
 
         return redirect()->route('pisos.index')->with('success', 'Piso creado correctamente.');
     }
@@ -38,7 +46,8 @@ class PisoController extends Controller
 
     public function edit(Piso $piso)
     {
-        return view('pisos.edit', compact('piso'));
+        $comunidades = ComunidadAutonoma::all();
+        return view('pisos.edit', compact('piso', 'comunidades'));
     }
 
     public function update(Request $request, Piso $piso)
@@ -47,6 +56,7 @@ class PisoController extends Controller
             'calle' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'descripcion' => 'nullable|string',
+            'comunidad_autonoma_id' => 'nullable|exists:comunidades_autonomas,id',
         ]);
 
         $piso->update($request->all());

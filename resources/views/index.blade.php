@@ -47,16 +47,6 @@
                 </div>
             </a>
         </div>
-        <div class="ficha">
-            <a class="centrado" href="{{route('calleConstitucion1')}}">
-                <img class="imagenFicha" src="{{asset('images/piso1/CalleConstitucion1.png')}}" usemap="#piso1map"/>
-                <div class="textoficha">
-                    <h3>225.000€</h3>
-                    <p>Calle Cuarta Zaragoza</p>
-                    <p>Chalet grande con 4 habitaciones y 2 baños. Situado a las afueras del pueblo.</p>
-                </div>
-            </a>
-        </div>
     </div>
     <div id="SobreNosotras">
         <p>Somos una empresa pequeña con dos trabajadores Celia Cies y Sandra Martinez.
@@ -121,9 +111,11 @@
             <a href="#SobreNosotras" class="enlaceFooter">
                 <p>NOSOTRAS</p>
             </a>
+        @auth
             <a href="#Contactanos" class="enlaceFooter">
                 <p>CONTACTANOS</p>
             </a>
+        @endauth
     </footer>
 </body>
 </html>

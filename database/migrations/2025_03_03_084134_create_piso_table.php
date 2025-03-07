@@ -6,25 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up():void
+    public function up(): void
     {
         Schema::create('pisos', function (Blueprint $table) {
             $table->id();
             $table->string('calle');
             $table->decimal('precio', 10, 2);
             $table->text('descripcion')->nullable();
+            $table->unsignedBigInteger('comunidad_autonoma_id')->nullable();
+            $table->foreign('comunidad_autonoma_id')->references('id')->on('comunidad_autonomas');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('pisos');
+        Schema::table('pisos', function (Blueprint $table) {
+            $table->dropForeign(['comunidad_autonoma_id']);
+            $table->dropColumn('comunidad_autonoma_id');
+        });
     }
 };

@@ -3,6 +3,8 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <link rel="shortcut icon" href="{{asset('../../public/images/logo.jpeg')}}" />
     <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/stilosCSS.css') }}">
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

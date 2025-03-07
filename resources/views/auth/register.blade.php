@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <link rel="stylesheet" href="{{ asset('css/stilosCSS.css') }}">
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

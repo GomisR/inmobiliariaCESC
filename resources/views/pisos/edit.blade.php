@@ -13,6 +13,19 @@
 
         <label>Descripción:</label>
         <textarea name="descripcion">{{ $piso->descripcion }}</textarea>
+        <!-- Seleccionar comunidada autonoma -->
+        <div class="form-group">
+            <label for="comunidad_autonoma_id">Comunidad Autónoma</label>
+            <select name="comunidad_autonoma_id" id="comunidad_autonoma_id" class="form-control">
+                <option value="">Selecciona una Comunidad Autónoma</option>
+                @foreach($comunidades as $comunidad)
+                    <option value="{{ $comunidad->id }}"
+                        {{ $piso->comunidad_autonoma_id == $comunidad->id ? 'selected' : '' }}>
+                        {{ $comunidad->nombre }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
         <button type="submit">Actualizar</button>
     </form>

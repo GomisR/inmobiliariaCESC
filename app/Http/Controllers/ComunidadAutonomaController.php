@@ -2,63 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Piso;
+use App\Models\ComunidadAutonoma;
 use Illuminate\Http\Request;
 
-class PisoController extends Controller
+class ComunidadAutonomaController extends Controller
 {
     public function index()
     {
-        $pisos = Piso::with('comunidadAutonoma')->get();
-        return view('pisos.indexPisos', compact('pisos'));
+        $comunidades = ComunidadAutonoma::all();
+        return view('comunidades.index', compact('comunidades'));
     }
 
     public function create()
     {
-        return view('pisos.create');
+        return view('comunidades.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'calle' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:0',
-            'descripcion' => 'nullable|string',
+            'nombre' => 'required|string|max:255|unique:comunidades_autonomas'
         ]);
 
-        Piso::create($request->all());
+        ComunidadAutonoma::create($request->all());
 
-        return redirect()->route('pisos.index')->with('success', 'Piso creado correctamente.');
+        return redirect()->route('comunidades.index')->with('success', 'Comunidad Autónoma creada correctamente.');
     }
 
-    public function show(Piso $piso)
+    public function edit(ComunidadAutonoma $comunidad)
     {
-        return view('pisos.show', compact('piso'));
+        return view('comunidades.edit', compact('comunidad'));
     }
 
-    public function edit(Piso $piso)
-    {
-        $comunidades = ComunidadAutonoma::all();
-        return view('pisos.edit', compact('piso', 'comunidades'));
-    }
-
-    public function update(Request $request, Piso $piso)
+    public function update(Request $request, ComunidadAutonoma $comunidad)
     {
         $request->validate([
-            'calle' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:0',
-            'descripcion' => 'nullable|string',
-            'comunidad_autonoma_id' => 'nullable|exists:comunidades_autonomas,id',
+            'nombre' => 'required|string|max:255|unique:comunidades_autonomas,nombre,' . $comunidad->id
         ]);
 
-        $piso->update($request->all());
+        $comunidad->update($request->all());
 
-        return redirect()->route('pisos.index')->with('success', 'Piso actualizado correctamente.');
+        return redirect()->route('comunidades.index')->with('success', 'Comunidad Autónoma actualizada correctamente.');
     }
 
-    public function destroy(Piso $piso)
+    public function destroy(ComunidadAutonoma $comunidad)
     {
-        $piso->delete();
-        return redirect()->route('pisos.index')->with('success', 'Piso eliminado correctamente.');
+        $comunidad->delete();
+        return redirect()->route('comunidades.index')->with('success', 'Comunidad Autónoma eliminada correctamente.');
     }
 }

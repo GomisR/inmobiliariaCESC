@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\ComunidadAutonomaController;
 use App\Http\Controllers\PisoController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +37,6 @@ Route::post('/contacto', [ObservacionesController::class, 'store'])->name('For')
 Route::get('pisos', [PisoController::class, 'index'])->name('pisos.index');
 
 Route::resource("pisos", PisoController::class);
+
+//ComunidadesAutonomas
+Route::resource('comunidades', ComunidadAutonomaController::class);
